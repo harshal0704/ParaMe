@@ -1,0 +1,23 @@
+{
+    email admin@yourdomain.com
+}
+
+# Replace with your actual domain or use localhost for dev
+:80 {
+    # Forward LiveKit WebRTC and WebSocket traffic
+    @livekit path /rtc* /livekit*
+    handle @livekit {
+        reverse_proxy livekit:7880
+    }
+
+    # Forward Backend API & Webhooks
+    @api path /api/* /webhooks/* /docs* /openapi.json
+    handle @api {
+        reverse_proxy backend:8000
+    }
+
+    # Health check endpoint
+    handle /health {
+        respond "OK" 200
+    }
+}

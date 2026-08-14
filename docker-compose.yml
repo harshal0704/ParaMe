@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: pavtar_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - pavtar_net
+
+  livekit:
+    image: livekit/livekit-server:latest
+    container_name: pavtar_livekit
+    restart: unless-stopped
+    command: --config /etc/livekit.yaml
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+    volumes:
+      - ./config/livekit.yaml:/etc/livekit.yaml:ro
+    networks:
+      - pavtar_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pavtar_backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=8000
+    networks:
+      - pavtar_net
+
+  agent:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    container_name: pavtar_voice_agent
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - livekit
+      - backend
+    networks:
+      - pavtar_net
+
+networks:
+  pavtar_net:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

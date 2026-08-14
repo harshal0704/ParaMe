@@ -1,0 +1,18 @@
+port: 7880
+rtc:
+  tcp_port: 7881
+  udp_port: 7882
+  use_external_ip: true
+  enable_loopback_candidate: false
+
+keys:
+  devkey: secret98765432101234567890abcdef
+
+logging:
+  level: info
+
+# Tuned for lean single-node 1GB RAM VM memory efficiency
+room:
+  auto_create: true
+  empty_timeout: 300
+  max_participants: 20
