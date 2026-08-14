@@ -4,7 +4,7 @@
 # ==============================================================================
 set -e
 
-echo "🚀 Starting Oracle Cloud 1GB VM optimization for AI Persona & LiveKit..."
+echo "🚀 Starting Oracle Cloud VM optimization for Pavtar Engine..."
 
 # 1. Create a 2GB Swapfile to prevent OOM errors on 1GB RAM VM
 if [ ! -f /swapfile ]; then
@@ -22,8 +22,8 @@ fi
 # 2. Optimize sysctl swappiness and virtual memory caching
 sudo sysctl vm.swappiness=20
 sudo sysctl vm.vfs_cache_pressure=50
-echo "vm.swappiness = 20" | sudo tee -a /etc/sysctl.conf
-echo "vm.vfs_cache_pressure = 50" | sudo tee -a /etc/sysctl.conf
+sudo sysctl net.core.rmem_max=2500000 2>/dev/null || true
+sudo sysctl net.core.wmem_max=2500000 2>/dev/null || true
 
 # 3. Update packages and install Docker if not present
 if ! command -v docker &> /dev/null; then
@@ -36,5 +36,23 @@ if ! command -v docker &> /dev/null; then
     echo "✅ Docker installed!"
 fi
 
-echo "🎉 VM Optimization Complete! Free Memory:"
+# 4. Open Firewall Ports for HTTP, SSL, and WebRTC UDP Audio
+echo "🛡️ Configuring Firewall Ports for WebRTC & HTTP..."
+if command -v ufw &> /dev/null; then
+    sudo ufw allow 80/tcp
+    sudo ufw allow 443/tcp
+    sudo ufw allow 7880/tcp
+    sudo ufw allow 7881/tcp
+    sudo ufw allow 7882/udp
+fi
+
+# Handle Oracle Cloud specific iptables defaults
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT 2>/dev/null || true
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT 2>/dev/null || true
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 7880 -j ACCEPT 2>/dev/null || true
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 7881 -j ACCEPT 2>/dev/null || true
+sudo iptables -I INPUT 6 -m state --state NEW -p udp --dport 7882 -j ACCEPT 2>/dev/null || true
+sudo netfilter-persistent save 2>/dev/null || true
+
+echo "🎉 VM Optimization Complete! Memory Status:"
 free -h
