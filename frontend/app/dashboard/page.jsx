@@ -20,7 +20,10 @@ import {
 import AvaturnCreator from '../../components/AvaturnCreator';
 import VoiceRecorder from '../../components/VoiceRecorder';
 
+import { UserButton, useUser } from '@clerk/nextjs';
+
 export default function DashboardPage() {
+  const { user } = useUser();
   const [activeTab, setActiveTab] = useState('avatar');
   const [avatarGlb, setAvatarGlb] = useState('https://models.readyplayer.me/64b58e72e1858a74e548ab09.glb');
   const [handle, setHandle] = useState('harshal');
@@ -50,7 +53,9 @@ export default function DashboardPage() {
             </Link>
             <div>
               <h1 className="text-sm font-semibold text-white">Creator Studio</h1>
-              <p className="text-[11px] font-mono text-stone-400">Configure your 3D Digital Twin</p>
+              <p className="text-[11px] font-mono text-stone-400">
+                {user ? `Logged in as ${user.primaryEmailAddress?.emailAddress || user.firstName || 'Creator'}` : 'Configure your 3D Digital Twin'}
+              </p>
             </div>
           </div>
 
@@ -63,6 +68,10 @@ export default function DashboardPage() {
               <span>View Live Twin (/u/{handle})</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
+            
+            <div className="pl-2 border-l border-white/10 flex items-center">
+              <UserButton afterSignOutUrl="/" />
+            </div>
           </div>
         </div>
       </header>

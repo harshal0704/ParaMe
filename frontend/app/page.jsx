@@ -89,16 +89,16 @@ export default function HomePage() {
           {/* User Auth & Launch Action */}
           <div className="flex items-center gap-3">
             <Link 
-              href="/dashboard" 
-              className="ks-button-ghost text-xs"
+              href="/sign-in" 
+              className="ks-button-ghost text-xs hidden sm:inline-flex"
             >
               Sign In
             </Link>
             <Link 
-              href="/dashboard" 
+              href="/sign-up" 
               className="ks-button-primary text-xs"
             >
-              <span>Launch Studio</span>
+              <span>Launch Studio Free</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
