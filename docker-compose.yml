@@ -1,21 +1,20 @@
-version: '3.8'
-
 services:
   db:
     image: pgvector/pgvector:pg16
-    container_name: pavtar_db
+    container_name: parame_db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-pavtar}
+      POSTGRES_DB: ${POSTGRES_DB:-parame}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_password_123}
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./backend/db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
     ports:
       - "5432:5432"
     networks:
-      - pavtar_net
+      - parame_net
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -24,7 +23,7 @@ services:
 
   caddy:
     image: caddy:2-alpine
-    container_name: pavtar_caddy
+    container_name: parame_caddy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -34,11 +33,11 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     networks:
-      - pavtar_net
+      - parame_net
 
   livekit:
     image: livekit/livekit-server:latest
-    container_name: pavtar_livekit
+    container_name: parame_livekit
     restart: unless-stopped
     command: --config /etc/livekit.yaml
     ports:
@@ -48,30 +47,30 @@ services:
     volumes:
       - ./config/livekit.yaml:/etc/livekit.yaml:ro
     networks:
-      - pavtar_net
+      - parame_net
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: pavtar_backend
+    container_name: parame_backend
     restart: unless-stopped
     env_file:
       - .env
     environment:
       - PORT=8000
-      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres_password_123}@db:5432/${POSTGRES_DB:-pavtar}
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres_password_123}@db:5432/${POSTGRES_DB:-parame}
     depends_on:
       db:
         condition: service_healthy
     networks:
-      - pavtar_net
+      - parame_net
 
   agent:
     build:
       context: ./agent
       dockerfile: Dockerfile
-    container_name: pavtar_voice_agent
+    container_name: parame_voice_agent
     restart: unless-stopped
     env_file:
       - .env
@@ -79,10 +78,10 @@ services:
       - livekit
       - backend
     networks:
-      - pavtar_net
+      - parame_net
 
 networks:
-  pavtar_net:
+  parame_net:
     driver: bridge
 
 volumes:

@@ -68,8 +68,8 @@ async def upload_voice_sample(
             file_url = f"/uploads/{filename}"
     else:
         # Local mock storage for development
-        os.makedirs(f"/tmp/pavtar/{handle}", exist_ok=True)
-        local_path = f"/tmp/pavtar/{handle}/{file_uuid}.wav"
+        os.makedirs(f"/tmp/parame/{handle}", exist_ok=True)
+        local_path = f"/tmp/parame/{handle}/{file_uuid}.wav"
         with open(local_path, "wb") as f:
             f.write(content)
         file_url = local_path

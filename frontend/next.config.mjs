@@ -8,6 +8,10 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.externals = [...(config.externals || []), { canvas: 'canvas' }];
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@': require('path').resolve(__dirname, '.'),
+    };
     return config;
   }
 };

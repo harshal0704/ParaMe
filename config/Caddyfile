@@ -1,5 +1,30 @@
 {
-    email admin@yourdomain.com
+    email admin@harshalsp.com
+}
+
+# Production site: parame.harshalsp.com
+parame.harshalsp.com {
+    # Forward LiveKit WebRTC and WebSocket traffic
+    @livekit path /rtc* /livekit*
+    handle @livekit {
+        reverse_proxy livekit:7880
+    }
+
+    # Forward Backend API & Webhooks
+    @api path /api/* /webhooks/* /docs* /openapi.json
+    handle @api {
+        reverse_proxy backend:8000
+    }
+
+    # Health check endpoint
+    handle /health {
+        respond "OK" 200
+    }
+
+    # Frontend Next.js / OpenNext static assets
+    handle {
+        reverse_proxy frontend:3000
+    }
 }
 
 # Replace with your actual domain or use localhost for dev

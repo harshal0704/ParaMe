@@ -10,13 +10,8 @@ import {
   ArrowRight, 
   Check, 
   Video, 
-  ShieldCheck, 
   ExternalLink,
-  Bot,
-  Zap,
-  Globe,
-  Terminal,
-  Cpu
+  Bot
 } from 'lucide-react';
 import InteractiveProof from '../components/InteractiveProof';
 
@@ -67,7 +62,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-base tracking-tight text-white">Pavtar</span>
+              <span className="font-bold text-base tracking-tight text-white">ParaMe</span>
               <span className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300">
                 v1.0
               </span>
@@ -485,7 +480,7 @@ export default function HomePage() {
       <footer className="py-12 px-6 border-t border-white/[0.07] bg-[#040302] text-stone-500 text-xs font-mono">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-stone-300 font-semibold">Pavtar OS</span>
+            <span className="text-stone-300 font-semibold">ParaMe OS</span>
             <span>•</span>
             <span>Crafted with Impeccable Design Standards</span>
           </div>

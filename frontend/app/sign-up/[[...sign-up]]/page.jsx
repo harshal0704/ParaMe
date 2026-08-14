@@ -21,7 +21,7 @@ export default function SignUpPage() {
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-300 to-amber-600 flex items-center justify-center font-bold text-black text-xs shadow-[0_0_15px_rgba(212,175,55,0.3)]">
             P
           </div>
-          <span className="font-bold text-sm tracking-tight text-white">Pavtar</span>
+          <span className="font-bold text-sm tracking-tight text-white">ParaMe</span>
         </Link>
       </div>
 
@@ -53,7 +53,7 @@ export default function SignUpPage() {
 
       {/* Footer */}
       <div className="text-center text-xs font-mono text-stone-500">
-        Pavtar Twin OS • 100% Free Forever Tier Available
+        ParaMe Twin OS • 100% Free Forever Tier Available
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 
 export const metadata = {
-  title: 'Pavtar — Omnichannel AI Persona & 3D Digital Twin',
+  title: 'ParaMe — Omnichannel AI Persona & 3D Digital Twin',
   description: 'Create your photorealistic 3D digital twin with cloned voice, multimodal memory RAG, and omnichannel WebRTC calling.',
   icons: {
     icon: [

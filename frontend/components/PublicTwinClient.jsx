@@ -278,7 +278,7 @@ export default function PublicTwinClient({ username = 'harshal' }) {
 
       {/* 3. Minimal Bottom Strip */}
       <footer className="border-t border-white/[0.06] py-4 px-6 text-center text-xs font-mono text-stone-500 bg-[#050403]">
-        Pavtar Twin Engine • Powered by Gemini 2.0 Flash &amp; Oracle Always-Free Tier
+        ParaMe Twin Engine • Powered by Gemini 2.0 Flash &amp; Oracle Always-Free Tier
       </footer>
 
     </div>

@@ -125,7 +125,7 @@ export default function InteractiveProof() {
             <div className="flex items-center gap-3 mb-6">
               <span className="proof-annotation proof-annotation--craft">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                After • Pavtar 3D Interactive Twin
+                After • ParaMe 3D Interactive Twin
               </span>
               <span className="text-[11px] font-mono text-amber-300/80">Photorealistic WebRTC Stage</span>
             </div>

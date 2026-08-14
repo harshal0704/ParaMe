@@ -6,6 +6,15 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "routes": [
+    { "pattern": "parame.harshalsp.com", "custom_domain": true }
+  ],
+  "vars": {
+    "API_BASE_URL": "http://localhost:8000",
+    "NEXT_PUBLIC_API_URL": "http://localhost:8000",
+    "NEXT_PUBLIC_APP_URL": "https://parame.harshalsp.com",
+    "NEXT_PUBLIC_LIVEKIT_URL": "ws://localhost:7880"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"

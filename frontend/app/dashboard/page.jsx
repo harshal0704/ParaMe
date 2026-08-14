@@ -31,7 +31,7 @@ export default function DashboardPage() {
   const [systemBio, setSystemBio] = useState('Software engineer specialized in real-time WebRTC media and agentic AI architectures.');
   const [copiedSnippet, setCopiedSnippet] = useState(false);
 
-  const embedScript = `<script src="https://yourtwin.domain/widget.js" data-twin="${handle}"></script>`;
+  const embedScript = `<script src="${process.env.NEXT_PUBLIC_APP_URL || 'https://parame.harshalsp.com'}/widget.js" data-twin="${handle}"></script>`;
 
   const copyEmbed = () => {
     navigator.clipboard.writeText(embedScript);

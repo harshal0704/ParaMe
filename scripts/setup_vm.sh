@@ -4,7 +4,7 @@
 # ==============================================================================
 set -e
 
-echo "🚀 Starting Oracle Cloud VM optimization for Pavtar Engine..."
+echo "🚀 Starting Oracle Cloud VM optimization for ParaMe Engine..."
 
 # 1. Create a 2GB Swapfile to prevent OOM errors on 1GB RAM VM
 if [ ! -f /swapfile ]; then
@@ -56,3 +56,10 @@ sudo netfilter-persistent save 2>/dev/null || true
 
 echo "🎉 VM Optimization Complete! Memory Status:"
 free -h
+
+echo ""
+echo "🐳 Starting ParaMe Docker services..."
+docker compose up -d --build
+
+echo ""
+echo "✅ ParaMe stack is starting. Check status with: docker compose ps"

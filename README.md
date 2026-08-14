@@ -1,4 +1,4 @@
-# 🌟 Pavtar — Omnichannel AI Persona & 3D Digital Twin Platform
+# 🌟 ParaMe — Omnichannel AI Persona & 3D Digital Twin Platform
 
 > **Build and deploy your photorealistic 3D interactive AI Digital Twin.**
 > Featuring **Apple ARKit 52 blendshapes**, **sub-450ms real-time WebRTC audio**, **multimodal memory RAG via Google Photos & `pgvector`**, and **omnichannel presence over WhatsApp, Telegram, and Discord**.
@@ -37,8 +37,8 @@
 
 ### 1. Clone & Configure Environment
 ```bash
-git clone https://github.com/your-username/pavtar.git
-cd pavtar
+git clone https://github.com/your-username/parame.git
+cd parame
 cp .env.example .env
 # Fill in GEMINI_API_KEY, GROQ_API_KEY, and CLERK keys in .env
 ```
