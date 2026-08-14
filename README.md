@@ -26,7 +26,7 @@
 | **LLM Reasoning** | Google Gemini 2.0 Flash (Google AI Studio: 15 RPM / 1M TPM) | **$0.00** |
 | **STT Transcriber** | Groq Whisper-Large-v3-Turbo API | **$0.00** |
 | **TTS & Voice** | Edge-TTS (Unlimited Neural Audio) / Kokoro-82M | **$0.00** |
-| **Relational & Vectors**| Supabase / Neon PostgreSQL 16 + `pgvector` (500 MB Free) | **$0.00** |
+| **Relational & Vectors**| Self-Hosted PostgreSQL 16 + `pgvector` (24/7 Permanent, Never Sleeps) | **$0.00** |
 | **Object Storage** | Cloudflare R2 (10 GB Free, Zero Egress Fees) | **$0.00** |
 | **Authentication** | Clerk (10,000 Monthly Active Users Free) | **$0.00** |
 | **Edge Ingress** | Cloudflare Tunnel & Caddy Automated SSL | **$0.00** |
